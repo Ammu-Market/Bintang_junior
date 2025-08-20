@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bintang junior purimas 2 </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3a86ff;
+            --secondary: #8338ec;
+            --accent: #ff006e;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+            text-decoration: none;
+        }
+        
+    
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+       
+       .logo-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-text .fontku {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: initial !important;
+  color: #222222 !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+} 
+   
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            padding: 10px 25px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(58, 134, 255, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(58, 134, 255, 0.6);
+            color: white;
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+background: #87CEEB url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center / cover;            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideIn 1s forwards 0.5s;
+        }
+        
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .hero-buttons .cta-button {
+            padding: 15px 30px;
+        }
+        
+        .secondary-button {
+            padding: 15px 30px;
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .secondary-button:hover {
+            background-color: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeUp 1s forwards 1s;
+        }
+        
+        @keyframes fadeUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* About Section */
+        .section {
+            padding: 100px 10%;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateX(-50px);
+            opacity: 0;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-text {
+            flex: 1;
+            transform: translateX(50px);
+            opacity: 0;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .about-features {
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .feature-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .feature-text p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+        
+        .programs {
+            background-color: #f5f7fa;
+        }
+        
+        .programs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .program-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+              .program-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .program-card:hover .program-image img {
+            transform: scale(1.1);
+        }
+      
+        .program-content {
+            padding: 25px;
+        }
+        
+        .program-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .program-content p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .program-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .program-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .program-duration {
+            display: flex;
+            align-items: center;
+            color: #777;
+        }
+        
+        .program-duration i {
+            margin-right: 5px;
+            color: var(--secondary);
+        }
+        
+        .fontku {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;      /* tebal sedang */
+  font-size: 18px;
+  color: #222222 !important;        /* warna gelap */
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+}
+        .video-section {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://img1.pixhost.to/images/7799/629993372_sibayu.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+        
+        .video-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .video-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        
+        .video-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(58, 134, 255, 0.5);
+            transform: scale(0);
+            animation: popIn 0.8s forwards 1.5s;
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .play-button i {
+            font-size: 1.8rem;
+            color: white;
+            margin-left: 5px;
+        }
+        
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(58, 134, 255, 0.7);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: #f5f7fa;
+        }
+        
+        .testimonials-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 30px;
+            padding: 20px 0;
+            scrollbar-width: none;
+        }
+        
+        .testimonials-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .testimonial-card {
+            min-width: 350px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            scroll-snap-align: start;
+            transform: translateX(50px);
+            opacity: 0;
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-text {
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 80px 10%;
+            border-radius: 20px;
+            margin: 100px 10%;
+            box-shadow: 0 20px 40px rgba(58, 134, 255, 0.3);
+            transform: scale(0.95);
+            opacity: 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-button.large {
+            padding: 18px 40px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            background-color: white;
+            color: black;
+            display: inline-block;
+        }
+        
+        .cta-button.large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+        }
+        
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 10% 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .footer-about p {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: white;
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #aaa;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .animate {
+            animation: fadeUp 1s forwards;
+        }
+        
+        .animate-left {
+            animation: slideInLeft 1s forwards;
+        }
+        
+        .animate-right {
+            animation: slideInRight 1s forwards;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+        
+        @media (max-width: 1200px) {
+            .hero-image {
+                width: 400px;
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero {
+                text-align: center;
+                padding: 0 5%;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                margin: 0 auto;
+                padding-top: 100px;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image, .about-text {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 80px 5%;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-section {
+                margin: 80px 5%;
+                padding: 60px 5%;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .programs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+          
+            .testimonial-card {
+                min-width: 280px;
+            }
+        }
+        
+        .hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: var(--dark);
+  transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+    </style>
+</head>
+<body>
+     <div id="loading-screen">
+        <div class="loader"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+<header>
+  <div class="logo">
+    <img src="https://img1.pixhost.to/images/7801/630017798_sibayu.jpg" alt="EduMaster Logo">
+    <div class="logo-text">
+      <h3>Bintang Junior Purimas 2</h3>
+      <p class="fontku">Jalan Mandor Naiman Perum Purimas2 blok A no 9</p>
+    </div>
+  </div>
+
+  <nav>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul>
+      <li><a href="#home">Beranda</a></li>
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="#programs">Program</a></li>
+      <li><a href="#testimonials">Testimoni</a></li>
+      <li><a href="#contact">Kontak</a></li>
+    </ul>
+  </nav>
+</header>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Selamat datang</h1>
+            <p>Bintang junior purimas 2 hadir sebagai solusi untuk menciptakan generasi CETAR(Cerdas, Tangguh, Rajin).</p>
+            <div class="hero-buttons">
+                <a href="#ulr" class="cta-button">Mulai Sekarang</a>
+                <a href="/data/" class="secondary-button">Jelajahi album</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://www.fuku-cloud.my.id/upload/981_1754663766495.jpeg" alt="Siswa Belajar">
+        </div>
+        
+         <a href="https://wa.me/6287785063736" target="_blank" 
+       style="position: fixed; bottom: 20px; left: 20px; background-color: #25D366; border-radius: 50%; width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 9999;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 35px; height: 35px;">
+    </a>
+    </section>
+    <section class="section" id="about">
+        <div class="section-title animate">
+            <h2>Ingin putra putri anda lebih berprestasi di sekolah?</h2>
+            <p>Kami memberikan pengalaman belajar terbaik dengan pendekatan personal dan materi yang disesuaikan dengan kebutuhan siswa.</p>
+        </div>
+        <div class="about-content">
+            <div class="about-image animate-left">
+                <img src="https://www.fuku-cloud.my.id/upload/7654_1754663804185.jpeg" alt="Tutor Bintang Junior">
+            </div>
+            <div class="about-text animate-right">
+                <h3>Apa bedanya Bintang Junior Purimas 2 Pasir Jambu dengan bimbel lain?</h3>
+                <p>Bintang Junior Purimas 2 hadir untuk teman-teman semua!
+Di sini, belajar jadi seru dengan cara yang mudah dan menyenangkan. Kita belajar sambil bermain, supaya tambah pintar dan penuh semangat setiap hari.</p>
+                <p>Kami percaya setiap siswa memiliki cara belajar unik, karena itu kami menyediakan program yang disesuaikan dengan gaya belajar masing-masing individu.</p>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Apakah siswa akan diberikan pekerjaan rumah?</h4>
+                            <p>Tidak, namun kami memotivasi para siswa untuk mengerjakan latihan soal yang tersedia sesering mungkin. Kami memposisikan keberadaanya sebagai learning partner, sehingga kami semaksimal mungkin membantu para siswa, bukan menambah beban belajarnya</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Tutor Berpengalaman</h4>
+                            <p>Mereka adalah tenaga pendidik profesional dan memiliki passion di dunia pendidikan. Mereka siap memberikan yang terbaik agar para siswa Bintang Junior Purimas 2 mendapatkan pengalaman belajar terbaik.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Apakah tersedia tes minat bakat di Bintang junior Purimas 2</h4>
+                            <p>Ya, tersedia tes minat bakat di Bintang junior purimas 2 dan siswa serta orang tua dapat mengkonsultasikan tes minat bakat kepada konselor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section program-card animate delay-7" id="creativity-time">
+  <h3>Creativity Time</h3>
+  <div class="program-content creativity-content">
+    <div class="program-image creativity-image">
+      <img src="https://www.fuku-cloud.my.id/upload/7083_1754667037221.jpeg" alt="Creativity Time" />
+    </div>
+    <div class="creativity-text">
+      <p>
+        Saatnya berekspresi dan berimajinasi! Creativity Time adalah momen khusus untuk anak-anak menyalurkan ide dan perasaan mereka melalui berbagai aktivitas seni dan kerajinan.
+      </p>
+      <p>
+        Anak-anak dapat menggambar, mewarnai, bernyanyi, berdansa, atau membuat kerajinan tangan sederhana. Aktivitas ini tidak hanya menyenangkan, tapi juga membantu mengembangkan kreativitas dan rasa percaya diri.
+      </p>
+    </div>
+  </div>
+</section>
+<section class="section program-card animate delay-8" id="smart-module-activity-book">
+  <h3>Smart Module Activity Book</h3>
+  <div class="program-content activity-book-content">
+    <div class="program-image activity-book-image">
+      <img src="https://www.fuku-cloud.my.id/upload/3788_1754667495954.jpeg" alt="Smart Module Activity Book" />
+    </div>
+    <div class="activity-book-text">
+      <p>
+        Smart Module Activity Book dirancang khusus untuk mendukung pembelajaran anak dengan pendekatan interaktif dan menyenangkan.
+      </p>
+      <p>
+        Buku aktivitas ini memuat berbagai tugas kreatif, latihan kognitif, serta permainan edukatif yang memicu rasa ingin tahu dan kemampuan berpikir kritis anak.
+      </p>
+      <p>
+        Dengan tampilan yang menarik dan materi yang mudah dipahami, anak-anak dapat belajar secara mandiri maupun bersama pendamping.
+      </p>
+    </div>
+  </div>
+</section>
+<section class="section program-card animate delay-9" id="free-meetings-bimba">
+  <h3>3x Pertemuan Gratis di Bimba Bintang Junior</h3>
+  <div class="program-content free-meeting-content">
+    <div class="program-image free-meeting-image">
+      <img src="https://www.fuku-cloud.my.id/upload/6917_1754667704659.jpeg" alt="Bimba Bintang Junior" />
+    </div>
+    <div class="free-meeting-text">
+      <p>
+        Dapatkan kesempatan mengikuti 3x pertemuan secara gratis di Bimba Bintang Junior!  
+      </p>
+      <p>
+        Program ini dirancang untuk memberikan pengalaman belajar menyenangkan dengan metode yang sesuai usia anak.
+      </p>
+      <p>
+        Daftar sekarang dan rasakan manfaat belajar yang interaktif, kreatif, dan penuh semangat bersama Bimba Bintang Junior.
+      </p>
+    </div>
+  </div>
+</section>
+    <section class="section programs" id="url">
+        <div class="section-title animate">
+            <h2>Program Unggulan Kami</h2>
+            <p>Pilih program yang sesuai dengan kebutuhan akademik Anda dan raih prestasi terbaik.</p>
+        </div>
+        <div class="programs-container">
+            <div class="program-card animate delay-1">
+                <div class="program-image">
+                    <img src="https://www.fuku-cloud.my.id/upload/9579_1754663797061.jpeg" alt="Program Intensif UTBK">
+                    
+                </div>
+                <div class="program-content">
+                    <h3>Mengasah kreativitas anak</h3>
+                    <p>mengasah kreativitas anak melalui permainan edukatif, kegiatan seni, dan pembelajaran menyenangkan, sehingga mereka dapat bereksplorasi, berimajinasi, dan mengembangkan potensi sejak dini.</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="program-card animate delay-2">
+                <div class="program-image">
+                    <img src="https://www.fuku-cloud.my.id/upload/2548_1754664299351.jpeg" alt="kreativitas">
+                </div>
+                <div class="program-content">
+                    <h3>Apa tujuan pembelajaran smart fun learning yang ingin dicapai</h3>
+                    <li>Berkarakter</li>
+                    <li>Berilmu</li>
+                    <li>berprestasi</li>
+                    <p>DENGAN FONDAS KARAKTER YANG BAIK DITUNJANG DENGAN ILMU PENGETAHUAN YANG LUAS MAKA PRESTASI ADALAH HASIL AKHIR YANG PASTI AKAN DATANG KEMUDIAN.</p>
+                    <div class="program-meta">
+                        <div class="program-duration">
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <div class="programs-container">
+            <div class="program-card animate delay-1">
+                <div class="program-image">
+                    <img src="https://www.fuku-cloud.my.id/upload/9579_1754663797061.jpeg" alt="Program Intensif UTBK">
+                    
+                </div>
+                <div class="program-content">
+                    <h3>Mengasah kreativitas anak</h3>
+                    <p>mengasah kreativitas anak melalui permainan edukatif, kegiatan seni, dan pembelajaran menyenangkan, sehingga mereka dapat bereksplorasi, berimajinasi, dan mengembangkan potensi sejak dini.</p>
+
+                    </div>
+                </div>
+            </div>
+             <div class="program-card animate delay-2">
+                <div class="program-image">
+                    <img src="https://www.fuku-cloud.my.id/upload/6561_1754666451995.jpeg" alt="kreativitas">
+                </div>
+                <div class="program-content">
+                    <h3>Smart learning & Fun learning</h3>
+                    <p>Smart Learning adalah metode belajar yang menggunakan teknologi dan strategi cerdas untuk membuat proses pembelajaran lebih efektif dan efisien.
+
+Fun Learning adalah cara belajar yang menyenangkan dan interaktif sehingga anak merasa gembira dan lebih mudah memahami materi.</p>
+                    <div class="program-meta">
+                        <div class="program-duration">
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="program-card animate delay-3">
+                <div class="program-image">
+                    <img src="https://www.fuku-cloud.my.id/upload/3194_1754666132932.jpeg" alt="Program Sekolah">
+                </div>
+                <div class="program-content">
+                    <h3>Alat permainan edukatif</h3>
+<p>Alat Permainan Edukatif (APE) di anak TK adalah mainan atau media yang dirancang khusus untuk membantu perkembangan kemampuan anak secara menyenangkan, seperti motorik, kognitif, sosial, dan bahasa. APE membuat belajar jadi lebih menarik dan efektif.
+</p>
+</div>
+</div>
+</div>
+        </div>
+    </section>
+    <section class="section programs" id="url">
+
+  <section class="program-card animate delay-1">
+    <div class="program-image">
+      <img src="https://www.fuku-cloud.my.id/upload/5800_1754665003566.jpeg" alt="Program Sekolah" />
+    </div>
+    <div class="program-content">
+      <h3>1. BAHASA</h3>
+      <p><strong>Kemampuan berbicara dan mengungkapkan pikiran.</strong></p>
+      <p>Memahami kata dan kalimat secara sederhana.</p>
+      <p>Mendengarkan dan mengikuti instruksi.</p>
+      <p>Menceritakan pengalaman atau cerita sederhana.</p>
+    </div>
+  </section>
+
+  <section class="program-card animate delay-2">
+    <div class="program-content">
+      <h3>2. FISIK MOTORIK</h3>
+      <p><strong>Gerakan besar yang melibatkan otot-otot besar tubuh, seperti berjalan, berlari, melompat, melempar, menangkap bola, naik turun tangga, dan keseimbangan tubuh.</strong></p>
+      <p>Gerakan kecil dan terkontrol yang melibatkan otot-otot kecil, terutama tangan dan jari, seperti memegang pensil, menggenggam, menggunting, mewarnai, menyusun puzzle, dan memasang kancing baju.</p>
+    </div>
+  </section>
+
+  <section class="program-card animate delay-3">
+    <div class="program-content">
+      <h3>3. KOGNITIF</h3>
+      <p><strong>Kemampuan mengenal dan memahami benda, bentuk, warna, angka, dan huruf secara sederhana.</strong></p>
+      <p>Berpikir logis dan memecahkan masalah sederhana, seperti menyusun puzzle atau mencari pola.</p>
+      <p>Konsentrasi dan perhatian saat mengikuti kegiatan.</p>
+      <p>Mengembangkan rasa ingin tahu dan kemampuan bertanya tentang lingkungan sekitar.</p>
+    </div>
+  </section>
+
+  <section class="program-card animate delay-4">
+    <div class="program-content">
+      <h3>4. SOSIAL-EMOSIONAL</h3>
+      <p><strong>Mengenal dan mengungkapkan perasaan seperti senang, sedih, marah, dan takut dengan cara yang tepat.</strong></p>
+      <p>Mengontrol emosi agar tidak mudah marah atau frustrasi.</p>
+      <p>Berinteraksi dan bermain bersama teman secara positif, seperti berbagi, bergiliran, dan bekerjasama.</p>
+      <p>Menghormati aturan dan orang lain di lingkungan sekolah atau bermain.</p>
+      <p>Mengembangkan rasa percaya diri dan kemandirian dalam aktivitas sehari-hari.</p>
+      <p>Membangun empati dengan memahami perasaan teman dan lingkungan sekitar.</p>
+    </div>
+  </section>
+
+  <section class="program-card animate delay-5">
+    <div class="program-content">
+      <h3>5. AGAMA DAN MORAL</h3>
+      <p><strong>Pengenalan ajaran agama secara sederhana, seperti doa-doa harian dan cerita nabi atau tokoh agama.</strong></p>
+      <p>Memahami nilai-nilai kebaikan seperti jujur, sopan, berbagi, dan menghormati orang tua serta guru.</p>
+      <p>Melatih perilaku positif, misalnya berkata “tolong”, “terima kasih”, dan tidak berbohong.</p>
+      <p>Menumbuhkan rasa syukur dan keimanan sesuai dengan agama yang dianut anak.</p>
+      <p>Mengajarkan norma sosial dan tata krama dalam kehidupan sehari-hari.</p>
+    </div>
+  </section>
+
+  <section class="program-card animate delay-6">
+    <div class="program-content">
+      <h3>6. SENI</h3>
+      <p><strong>Menggambar dan mewarnai untuk mengekspresikan ide dan perasaan.</strong></p>
+      <p>Membuat kerajinan tangan sederhana seperti melipat kertas atau membuat bentuk dari plastisin.</p>
+      <p>Bernyanyi dan bermain alat musik sederhana untuk melatih irama dan pendengaran.</p>
+      <p>Berdansa atau gerak kreatif untuk mengekspresikan diri melalui gerakan tubuh.</p>
+      <p>Mengenal berbagai bentuk seni dan budaya dasar seperti lagu anak, cerita rakyat, dan simbol budaya.</p>
+    </div>
+  </section>
+
+</section>
+    <section class="video-section">
+        <div class="video-content">
+            <h2 class="animate">Pengalaman Belajar yang Berbeda</h2>
+            <p class="animate delay-1">Lihat bagaimana metode pembelajaran kami membantu siswa mencapai potensi terbaik mereka.</p>
+        </div>
+    </section>
+     <section class="section testimonials" id="testimonials">
+        <div class="section-title animate">
+            <h2>Yuk dapatkan promonya</h2>
+            <p>Silahkan kunjungi dibawah ini yah jangan lupa.</p>
+        </div>
+       <div class="programs-container">
+            <div class="program-card animate delay-1">
+                <div class="program-image">
+                    <img src="https://www.fuku-cloud.my.id/upload/981_1754663766495.jpeg" alt="Program Intensif UTBK">
+                    
+                </div>
+    </section>
+       <section class="cta-section animate">
+        <h2>Siap Mengubah Prestasi dan kemampuan bernalar anak anak anda?</h2>
+        <p>Daftar sekarang dan dapatkan konsultasi gratis dengan tutor ahli kami. Temukan program yang paling sesuai.</p>
+        <a href="https://bintangjunior.id/" class="cta-button large">Klik Disini</a>
+    </section>
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="https://img1.pixhost.to/images/7801/630017798_sibayu.jpg" alt="EduMaster Logo">
+                    <div class="footer-logo-text">Bintang Junior Purimas 2 Pasir Jambu</div>
+                </div>
+                <p>adalah bimbingan belajar yang berkomitmen untuk mengambangkan kreativitas, imajinasi, dan pendidikan siswa</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Link Cepat</h3>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#programs">Program</a></li>
+                    <li><a href="#testimonials">Testimoni</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Karir</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Program</h3>
+                <ul>
+                    <li><a href="#"></a></li>
+                    <li><a href="#">Privat Eksklusif</a></li>
+                    <li><a href="#">Bimbingan Sekolah</a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#">masih bingung</a></li>
+                    <li><a href="#">masih bingung</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Kontak Kami</h3>
+                <p><i class="fas fa-map-marker-alt"></i>JL. mandor naiman Purimas2 no A9 pasir Jambu</p>
+                <p><i class="fas fa-phone-alt"></i> +6287785063736</p>
+                <p><i class="fas fa-envelope"></i> Bubueka83@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Senin - Jumat: Jam 08:00 - Jam 17:00<br>Sabtu - Minggu: Jam 08:00 - 08:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; Hak cipta <i class="fas fa-heart" style="color: var(--accent);"></i> By Kang A Store</p>
+        </div>
+    </footer>
+    
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading-screen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loading-screen').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+      
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate, .animate-left, .animate-right');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+          
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            const playButton = document.querySelector('.play-button');
+            playButton.addEventListener('click', function() {
+                alert('Video akan diputar di sini. Dalam implementasi nyata, ini akan membuka modal dengan pemutar video.');
+            });
+        });
+        
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '15px 5%';
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.padding = '20px 5%';
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
